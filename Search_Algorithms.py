@@ -1,3 +1,5 @@
+
+    
 # coding=utf-8
 """
 This file is your main submission that will be graded against. Only copy-paste
@@ -32,7 +34,7 @@ class PriorityQueue(object):
         queue (list): Nodes added to the priority queue.
     """
 
-    def __init__(self):
+    def _init_(self):
         """Initialize a new Priority Queue."""
 
         self.queue = []
@@ -60,12 +62,12 @@ class PriorityQueue(object):
         self.queue.pop(node_id)
         heapq.heapify(self.queue)
 
-    def __iter__(self):
+    def _iter_(self):
         """Queue iterator."""
 
         return iter(sorted(self.queue))
 
-    def __str__(self):
+    def _str_(self):
         """Priority Queue to string."""
 
         return 'PQ:%s' % self.queue
@@ -79,7 +81,7 @@ class PriorityQueue(object):
         """
         heapq.heappush(self.queue, node)
 
-    def __contains__(self, key):
+    def _contains_(self, key):
         """
         Containment Check operator for 'in'
 
@@ -92,7 +94,7 @@ class PriorityQueue(object):
 
         return key in [n for _, n in self.queue]
 
-    def __eq__(self, other):
+    def _eq_(self, other):
         """
         Compare this Priority Queue with another Priority Queue.
 
@@ -298,25 +300,17 @@ if __name__ == '__main__':
     graph_neighbours = generate_graph()
 
     print("============ UCS Search ================")
-    path_ucs, explored_ucs = uniform_cost_search(graph_neighbours, '0', '61')
+    path_ucs, explored_ucs = uniform_cost_search(graph_neighbours, '0', '4')
     print("Path UCS:", path_ucs)
     # print("Explored Nodes UCS: ", explored_ucs)
     print(len(explored_ucs))
     print()
 
     print("============ AStar Search ================")
-    path_astar, explored_astar = astar_search(graph_neighbours, '0', '61')
+    path_astar, explored_astar = astar_search(graph_neighbours, '0', '4')
     print("Path_astar:", path_astar)
     print("Explored Nodes A Star: ", explored_astar)
     print(len(explored_astar))
     print()
 
-    print("============ Bottleneck Astar Search ================")
-    path_1, explored_1 = astar_search(graph_neighbours, '0', '27')
-    path_2, explored_2 = astar_search(graph_neighbours, '35', '61')
-    print("Path1:", path_1)
-    print("Path_2:", path_2)
-
-    print("Explored Nodes1: ", explored_1)
-    print("Explored Nodes2: ", explored_2)
-    print(len(explored_1) + len(explored_2))
+   
