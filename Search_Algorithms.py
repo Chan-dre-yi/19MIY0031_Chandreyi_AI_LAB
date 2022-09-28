@@ -9,6 +9,7 @@ to this file that are not part of the classes that we want.
 
 import heapq
 import sys
+import math
 
 
 from util import generate_graph
@@ -202,14 +203,14 @@ def astar_search(graph, start, goal):
         return path, explored_nodes
 
     path.append(start)
-    path_cost = get_manhattan_heuristic(start, goal)
+    path_cost = get_geographical_heuristic(start, goal)
     # Priority Queue to keep sorted distance travelled till now
     frontier = [(path_cost, path)]
     while len(frontier) > 0:
         # pop a node from the queue
         path_cost_till_now, path_till_now = pop_frontier(frontier)
         current_node = path_till_now[-1]
-        path_cost_till_now = path_cost_till_now - get_manhattan_heuristic(current_node, goal)
+        path_cost_till_now = path_cost_till_now - get_geographical_heuristic(current_node, goal)
         explored_nodes.append(current_node)
         # test goal condition
         if current_node == goal:
@@ -227,7 +228,7 @@ def astar_search(graph, start, goal):
 
             # extra_cost = graph.get_edge_weight(current_node, neighbour)
             extra_cost = 1
-            neighbour_cost = extra_cost + path_cost_till_now + get_manhattan_heuristic(neighbour, goal)
+            neighbour_cost = extra_cost + path_cost_till_now + get_geographical_heuristic(neighbour, goal)
             new_element = (neighbour_cost, path_to_neighbour)
 
             is_there, indexx, neighbour_old_cost, _ = get_frontier_params_new(neighbour, frontier)
@@ -286,14 +287,14 @@ def get_frontier_params(node, frontier):
     return False, None, None, None
 
 
-def get_manhattan_heuristic(node, goal):
+def get_geographical_heuristic(node, goal):
     i, j = divmod(int(node), 8)
     i_goal, j_goal = divmod(int(goal), 8)
-    i_delta = abs(i - i_goal)
-    j_delta = abs(j - j_goal)
+    i_delta = (i - i_goal)**2
+    j_delta = (j - j_goal)**2
 
-    manhattan_dist = i_delta + j_delta
-    return manhattan_dist
+    geographical_dist = math.sqrt(i_delta + j_delta)
+    return geographical_dist
 
 
 if __name__ == '__main__':
