@@ -301,14 +301,14 @@ if __name__ == '__main__':
     graph_neighbours = generate_graph()
 
     print("============ UCS Search ================")
-    path_ucs, explored_ucs = uniform_cost_search(graph_neighbours, '0', '4')
+    path_ucs, explored_ucs = uniform_cost_search(graph_neighbours, '0', '3')
     print("Path UCS:", path_ucs)
     # print("Explored Nodes UCS: ", explored_ucs)
     print(len(explored_ucs))
     print()
 
     print("============ AStar Search ================")
-    path_astar, explored_astar = astar_search(graph_neighbours, '0', '4')
+    path_astar, explored_astar = astar_search(graph_neighbours, '0', '3')
     print("Path_astar:", path_astar)
     print("Explored Nodes A Star: ", explored_astar)
     print(len(explored_astar))
